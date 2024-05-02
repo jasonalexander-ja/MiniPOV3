@@ -2,18 +2,13 @@
 
 This is a short tutorial on how to program your MiniPOV3 in 2024. 
 
-## Requirements 
-
-As far as I can tell this currently only works on Windows 10/11 but will update later if other OSs work. 
-
 ### Hardware 
 
 Apart from your MiniPOV3 (with the ATTiny2313) your will also need an AVR based Arduino board to upload it code to it, this example uses an Arduino Uno. 
 
 ### Software 
-- [WinAVR](https://sourceforge.net/projects/winavr/files/latest/download) & [make](https://gnuwin32.sourceforge.net/packages/make.htm) to build the software 
+- [avrdude](https://github.com/avrdudes/avrdude) & [make](https://gnuwin32.sourceforge.net/packages/make.htm) to build the software 
 - [Arduino IDE](https://www.arduino.cc/en/software) to flash your Arduino board with the ArduinoISP firmware 
-- [AVRDUDESS](https://github.com/ZakKemble/AVRDUDESS/releases/tag/v2.17) to upload the actual firmware to the ATTiny2313 MCU 
 
 
 ## Steps 
@@ -49,6 +44,8 @@ You can use the attached `MiniPOV3 Generator.xlsx` spreadsheet that uses custom 
 
 ### Building 
 
+So far, this setp only works on Windows, for Mac/Linux, you will have to upload an existing hex file. 
+
 Open this repository in a command line, with make and WinAVR installed, run `make mypov.hex`, this will compile your code to the file `mypov.hex`.
 
 
@@ -73,9 +70,34 @@ For the Arduino Uno, connect:
 
 ### Upload
 
-Open AVRDUDESS, under `Programmer` select `Arduino board as programmer using arduino as ISP firmware`, select the COM port your Arduino is attached to, then under `MCU` select `ATtiny2313`, then under flash, open the `mypov.hex` hex file we generated earlier, then click `Program!`.
+Edit your `avrdude.conf` file, check to see if `arduino_as_isp` is present, if not add, add the following programmer configuration:
 
-<img src="docs/avrdudess.png">
+```conf
+#------------------------------------------------------------
+# arduino_as_isp
+#------------------------------------------------------------
 
+# Not to be confused with arduinoISP, this is the same as `-c stk500v1`
+# but treats EEPROM r/w correctly for arduino_as_isp programmers
+# See https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/
+# for details.
+
+programmer # arduino_as_isp
+    id                     = "arduino_as_isp";
+    desc                   = "Arduino board as programmer using arduino as ISP firmware";
+    type                   = "stk500";
+    prog_modes             = PM_ISP;
+    connection_type        = serial;
+    baudrate               = 19200;
+;
+```
+
+In your command line, still in this repository's directory, run the following command:
+
+```
+avrdude -c arduino_as_isp -p t2313 -P [serial port] -U flash:w:"mypov.hex":a
+```
+
+Add your serial port that the Arduino is connected to. You can replace `"mypov.hex"` with whichever hex file you want to upload. 
 
 You can now put take the ATTint2313 and put it in your MiniPOV3 and use. 
