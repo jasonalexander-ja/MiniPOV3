@@ -1,0 +1,751 @@
+   1               		.file	"mypov.c"
+   2               	__SP_L__ = 0x3d
+   3               	__SREG__ = 0x3f
+   4               	__tmp_reg__ = 0
+   5               	__zero_reg__ = 1
+   6               		.text
+   7               	.Ltext0:
+   8               		.cfi_sections	.debug_frame
+   9               	.global	delay_ms
+  11               	delay_ms:
+  12               	.LVL0:
+  13               	.LFB10:
+  14               		.file 1 "mypov.c"
+   1:mypov.c       **** #include <avr/io.h>      // this contains all the IO port definitions
+   2:mypov.c       **** #include <avr/interrupt.h>
+   3:mypov.c       **** #include <util/delay.h>
+   4:mypov.c       **** 
+   5:mypov.c       **** void delay_ms( uint16_t milliseconds)
+   6:mypov.c       **** {
+  15               		.loc 1 6 1 view -0
+  16               		.cfi_startproc
+  17               	/* prologue: function */
+  18               	/* frame size = 0 */
+  19               	/* stack size = 0 */
+  20               	.L__stack_usage = 0
+  21               		.loc 1 6 1 is_stmt 0 view .LVU1
+  22 0000 9C01      		movw r18,r24
+   7:mypov.c       ****    for( ; milliseconds > 0; milliseconds--)
+  23               		.loc 1 7 4 is_stmt 1 view .LVU2
+  24               	.LVL1:
+  25               	.L2:
+  26               		.loc 1 7 11 discriminator 1 view .LVU3
+  27               		.loc 1 7 4 is_stmt 0 discriminator 1 view .LVU4
+  28 0002 2115      		cp r18,__zero_reg__
+  29 0004 3105      		cpc r19,__zero_reg__
+  30 0006 01F4      		brne .L3
+  31               	/* epilogue start */
+   8:mypov.c       ****    {
+   9:mypov.c       ****       _delay_ms( 1);
+  10:mypov.c       ****    }
+  11:mypov.c       **** } 
+  32               		.loc 1 11 1 view .LVU5
+  33 0008 0895      		ret
+  34               	.L3:
+   9:mypov.c       ****    }
+  35               		.loc 1 9 7 is_stmt 1 view .LVU6
+  36               	.LVL2:
+  37               	.LBB8:
+  38               	.LBI8:
+  39               		.file 2 "/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h"
+   1:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    All rights reserved.
+   5:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+   6:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+   9:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  12:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      distribution.
+  16:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  17:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  21:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  33:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /* $Id: delay.h.in 2551 2020-10-10 20:33:35Z joerg_wunsch $ */
+  34:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  35:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  38:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #ifndef __DOXYGEN__
+  39:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #  ifndef __HAS_DELAY_CYCLES
+  40:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #    define __HAS_DELAY_CYCLES 1
+  41:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #  endif
+  42:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #endif  /* __DOXYGEN__ */
+  43:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  44:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #include <inttypes.h>
+  45:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  46:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #include <math.h>
+  47:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  48:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /** \file */
+  49:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  50:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \code
+  51:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  52:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  53:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     #include <util/delay.h>
+  54:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \endcode
+  55:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  56:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  57:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  58:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  59:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     used.
+  60:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  61:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  62:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  63:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  64:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  65:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  66:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  67:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  68:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  69:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  70:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  71:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  72:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  73:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  74:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  75:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  76:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  77:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     routines linked into the application.
+  78:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  79:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  80:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  81:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  82:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  83:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** */
+  84:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  85:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  86:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  87:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+  88:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #endif
+  89:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  90:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #ifndef F_CPU
+  91:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  92:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  93:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /** \ingroup util_delay
+  94:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \def F_CPU
+  95:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     \brief CPU frequency in Hz
+  96:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+  97:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     The macro F_CPU specifies the CPU frequency to be considered by
+  98:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     the delay macros.  This macro is normally supplied by the
+  99:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     environment (e.g. from within a project header, or the project's
+ 100:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     Makefile).  The value 1 MHz here is only provided as a "vanilla"
+ 101:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     fallback if no such user-provided definition could be found.
+ 102:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 103:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     In terms of the delay functions, the CPU frequency can be given as
+ 104:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     a floating-point constant (e.g. 3.6864E6 for 3.6864 MHz).
+ 105:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     However, the macros in <util/setbaud.h> require it to be an
+ 106:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****     integer value.
+ 107:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****  */
+ 108:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** # define F_CPU 1000000UL
+ 109:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #endif
+ 110:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 111:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+ 112:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+ 113:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #endif
+ 114:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 115:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 116:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 117:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 118:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #  include <math.h>
+ 119:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #endif
+ 120:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 121:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** /**
+ 122:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    \ingroup util_delay
+ 123:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 124:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 125:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 126:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 127:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 128:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 129:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 130:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 131:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 132:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 133:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 134:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 135:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 136:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 137:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 138:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 139:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 140:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 141:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 142:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Conversion of \c __ms into clock cycles may not always result in
+ 143:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 144:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __ms
+ 145:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    microseconds of delay.
+ 146:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 147:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 148:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 149:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 150:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    respectively.
+ 151:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 152:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    \note
+ 153:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 154:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 155:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 156:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 157:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    with previous versions, the macro \c "__DELAY_BACKWARD_COMPATIBLE__"
+ 158:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 159:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 160:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 161:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 162:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****    not available to the compiler then.
+ 163:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 164:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****  */
+ 165:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** void
+ 166:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** _delay_ms(double __ms)
+  40               		.loc 2 166 1 view .LVU7
+  41               	.LBB9:
+ 167:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** {
+ 168:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	double __tmp ;
+  42               		.loc 2 168 2 view .LVU8
+ 169:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 170:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 171:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 172:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+  43               		.loc 2 172 2 view .LVU9
+ 173:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+  44               		.loc 2 173 2 view .LVU10
+ 174:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+  45               		.loc 2 174 2 view .LVU11
+ 175:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 176:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 177:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 178:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 179:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 180:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 181:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 182:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	#else
+ 183:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 		//round up by default
+ 184:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+  46               		.loc 2 184 3 view .LVU12
+  47               		.loc 2 184 3 is_stmt 0 view .LVU13
+  48               	.LBE9:
+  49               	.LBE8:
+  50               		.file 3 "/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h"
+   1:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /* Copyright (c) 2002,2007-2009 Michael Stumpf
+   2:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+   3:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    Portions of documentation Copyright (c) 1990 - 1994
+   4:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    The Regents of the University of California.
+   5:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+   6:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    All rights reserved.
+   7:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+   8:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    Redistribution and use in source and binary forms, with or without
+   9:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    modification, are permitted provided that the following conditions are met:
+  10:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  11:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    * Redistributions of source code must retain the above copyright
+  12:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      notice, this list of conditions and the following disclaimer.
+  13:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  14:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    * Redistributions in binary form must reproduce the above copyright
+  15:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      notice, this list of conditions and the following disclaimer in
+  16:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      the documentation and/or other materials provided with the
+  17:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      distribution.
+  18:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  19:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    * Neither the name of the copyright holders nor the names of
+  20:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      contributors may be used to endorse or promote products derived
+  21:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****      from this software without specific prior written permission.
+  22:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  23:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  24:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  25:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  26:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  27:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  28:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  29:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  30:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  31:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  32:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  33:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  34:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  35:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /* $Id: math.h 2554 2021-05-20 22:22:24Z joerg_wunsch $ */
+  36:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  37:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /*
+  38:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    math.h - mathematical functions
+  39:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  40:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    Author : Michael Stumpf
+  41:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****             Michael.Stumpf@t-online.de
+  42:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  43:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    __ATTR_CONST__ added by marekm@linux.org.pl for functions
+  44:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    that "do not examine any values except their arguments, and have
+  45:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    no effects except the return value", for better optimization by gcc.
+  46:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****  */
+  47:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  48:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #ifndef __MATH_H
+  49:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define __MATH_H
+  50:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  51:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** \file */
+  52:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** \defgroup avr_math <math.h>: Mathematics
+  53:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     \code #include <math.h> \endcode
+  54:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  55:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     This header file declares basic mathematics constants and
+  56:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     functions.
+  57:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  58:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     \par Notes:
+  59:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     - In order to access the functions declared herein, it is usually
+  60:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       also required to additionally link against the library \c libm.a.
+  61:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       See also the related \ref faq_libm "FAQ entry".
+  62:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     - Math functions do not raise exceptions and do not change the
+  63:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       \c errno variable. Therefore the majority of them are declared
+  64:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       with const attribute, for better optimization by GCC.	*/
+  65:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  66:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  67:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** \ingroup avr_math	*/
+  68:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /*@{*/
+  69:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  70:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a e.	*/
+  71:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_E		2.7182818284590452354
+  72:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  73:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The logarithm of the \a e to base 2. */
+  74:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_LOG2E		1.4426950408889634074	/* log_2 e */
+  75:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  76:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The logarithm of the \a e to base 10. */
+  77:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_LOG10E	0.43429448190325182765	/* log_10 e */
+  78:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  79:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The natural logarithm of the 2.	*/
+  80:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_LN2		0.69314718055994530942	/* log_e 2 */
+  81:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  82:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The natural logarithm of the 10.	*/
+  83:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_LN10		2.30258509299404568402	/* log_e 10 */
+  84:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  85:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a pi.	*/
+  86:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_PI		3.14159265358979323846	/* pi */
+  87:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  88:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a pi/2.	*/
+  89:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_PI_2		1.57079632679489661923	/* pi/2 */
+  90:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  91:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a pi/4.	*/
+  92:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_PI_4		0.78539816339744830962	/* pi/4 */
+  93:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  94:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a 1/pi.	*/
+  95:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_1_PI		0.31830988618379067154	/* 1/pi */
+  96:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+  97:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a 2/pi.	*/
+  98:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_2_PI		0.63661977236758134308	/* 2/pi */
+  99:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 100:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a 2/sqrt(pi).	*/
+ 101:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_2_SQRTPI	1.12837916709551257390	/* 2/sqrt(pi) */
+ 102:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 103:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The square root of 2.	*/
+ 104:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_SQRT2		1.41421356237309504880	/* sqrt(2) */
+ 105:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 106:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** The constant \a 1/sqrt(2).	*/
+ 107:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define M_SQRT1_2	0.70710678118654752440	/* 1/sqrt(2) */
+ 108:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 109:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** NAN constant.	*/
+ 110:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define NAN	__builtin_nan("")
+ 111:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 112:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /** INFINITY constant.	*/
+ 113:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define INFINITY	__builtin_inf()
+ 114:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 115:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 116:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #ifndef __ATTR_CONST__
+ 117:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** # define __ATTR_CONST__ __attribute__((__const__))
+ 118:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #endif
+ 119:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 120:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #if __SIZEOF_DOUBLE__ == __SIZEOF_FLOAT__
+ 121:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /* In order to provide aliases for double functions in the case where
+ 122:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    double = float, use declarations with according assembler name.
+ 123:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    That way:
+ 124:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    1) We do *NOT* use macros like
+ 125:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****          #define sin sinf
+ 126:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       because that would interfere with C++.  For example, if some class
+ 127:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       would implement a method 'sin', or if there was polymorthism for
+ 128:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****       a function 'sin', then we would silently rename these to 'sinf'.
+ 129:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    2) We have proper prototypes, both for 'sin' and for 'sinf'.
+ 130:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****    3) It is zero-overhead.  */
+ 131:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define __ASM_ALIAS(x) __asm(#x)
+ 132:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #else
+ 133:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /* double != float: Provide double prototypes. */
+ 134:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #define __ASM_ALIAS(x) /* empty */
+ 135:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #endif
+ 136:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 137:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #ifdef __cplusplus
+ 138:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** extern "C" {
+ 139:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** #endif
+ 140:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 141:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /**
+ 142:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     The cosf() function returns the cosine of \a __x, measured in radians.
+ 143:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****  */
+ 144:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern float cosf (float __x);
+ 145:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern double cos (double __x) __ASM_ALIAS(cosf);		/**< The alias for cosf().	*/
+ 146:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 147:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /**
+ 148:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     The sinf() function returns the sine of \a __x, measured in radians.
+ 149:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****  */
+ 150:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern float sinf (float __x);
+ 151:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern double sin (double __x) __ASM_ALIAS(sinf);		/**< The alias for sinf().	*/
+ 152:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 153:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /**
+ 154:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     The tanf() function returns the tangent of \a __x, measured in radians.
+ 155:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****  */
+ 156:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern float tanf (float __x);
+ 157:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** __ATTR_CONST__ extern double tan (double __x) __ASM_ALIAS(tanf);		/**< The alias for tanf().	*/
+ 158:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 159:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** /**
+ 160:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     The fabsf() function computes the absolute value of a floating-point
+ 161:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     number \a __x.
+ 162:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****  */
+ 163:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** static inline float fabsf (float __x)
+ 164:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** {
+ 165:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     return __builtin_fabsf (__x);
+ 166:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** }
+ 167:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** 
+ 168:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** static inline double fabs (double __x)
+ 169:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h **** {
+ 170:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/math.h ****     return __builtin_fabs (__x);
+  51               		.loc 3 170 5 is_stmt 1 view .LVU14
+  52               	.LBB11:
+  53               	.LBB10:
+ 185:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	#endif
+ 186:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 
+ 187:/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+  54               		.loc 2 187 2 view .LVU15
+  55 000a 8FEC      		ldi r24,lo8(1999)
+  56 000c 97E0      		ldi r25,hi8(1999)
+  57 000e 0197      	1:	sbiw r24,1
+  58 0010 01F4      		brne 1b
+  59 0012 00C0      		rjmp .
+  60 0014 0000      		nop
+  61               	.LVL3:
+  62               		.loc 2 187 2 is_stmt 0 view .LVU16
+  63               	.LBE10:
+  64               	.LBE11:
+   7:mypov.c       ****    {
+  65               		.loc 1 7 29 is_stmt 1 view .LVU17
+   7:mypov.c       ****    {
+  66               		.loc 1 7 41 is_stmt 0 view .LVU18
+  67 0016 2150      		subi r18,1
+  68 0018 3109      		sbc r19,__zero_reg__
+  69               	.LVL4:
+   7:mypov.c       ****    {
+  70               		.loc 1 7 41 view .LVU19
+  71 001a 00C0      		rjmp .L2
+  72               		.cfi_endproc
+  73               	.LFE10:
+  75               	.global	__vector_4
+  77               	__vector_4:
+  78               	.LFB11:
+  12:mypov.c       **** 
+  13:mypov.c       **** #define TIMER1_PRESCALE_1 1
+  14:mypov.c       **** #define TIMER1_PRESCALE_8 2
+  15:mypov.c       **** #define TIMER1_PRESCALE_64 3
+  16:mypov.c       **** #define TIMER1_PRESCALE_256 4
+  17:mypov.c       **** #define TIMER1_PRESCALE_1024 5
+  18:mypov.c       **** 
+  19:mypov.c       **** // We use these macros because binary constants arent always supported. ugh.
+  20:mypov.c       **** #define HEX__(n) 0x##n##UL
+  21:mypov.c       **** #define B8__(x) ((x&0x0000000FLU)?1:0)  \
+  22:mypov.c       ****                +((x&0x000000F0LU)?2:0)  \
+  23:mypov.c       ****                +((x&0x00000F00LU)?4:0)  \
+  24:mypov.c       ****                +((x&0x0000F000LU)?8:0)  \
+  25:mypov.c       ****                +((x&0x000F0000LU)?16:0) \
+  26:mypov.c       ****                +((x&0x00F00000LU)?32:0) \
+  27:mypov.c       ****                +((x&0x0F000000LU)?64:0) \
+  28:mypov.c       ****                +((x&0xF0000000LU)?128:0)
+  29:mypov.c       **** #define B8(d) ((unsigned char)B8__(HEX__(d)))
+  30:mypov.c       **** 
+  31:mypov.c       **** const static int image[] = {
+  32:mypov.c       ****   B8(00000000),
+  33:mypov.c       ****   B8(00000000),
+  34:mypov.c       ****   B8(00000000),
+  35:mypov.c       ****   B8(00000000),
+  36:mypov.c       ****   B8(00000000),
+  37:mypov.c       ****   B8(00000000),
+  38:mypov.c       ****   B8(00000000),
+  39:mypov.c       ****   B8(00000000),
+  40:mypov.c       ****   B8(00000000),
+  41:mypov.c       **** };
+  42:mypov.c       **** 
+  43:mypov.c       **** #define NUM_ELEM(x) (sizeof (x) / sizeof (*(x)))
+  44:mypov.c       **** int imagesize = NUM_ELEM(image);
+  45:mypov.c       **** 
+  46:mypov.c       **** 
+  47:mypov.c       **** // this function is called when timer1 compare matches OCR1A
+  48:mypov.c       **** uint8_t j = 0;
+  49:mypov.c       **** SIGNAL( TIMER1_COMPA_vect ) {
+  79               		.loc 1 49 29 is_stmt 1 view -0
+  80               		.cfi_startproc
+  81 001c 1F92 1FB6 		__gcc_isr 1
+  81      1F92 1124 
+  81      2F93 
+  82 0026 8F93      		push r24
+  83               		.cfi_def_cfa_offset 3
+  84               		.cfi_offset 24, -2
+  85 0028 9F93      		push r25
+  86               		.cfi_def_cfa_offset 4
+  87               		.cfi_offset 25, -3
+  88 002a EF93      		push r30
+  89               		.cfi_def_cfa_offset 5
+  90               		.cfi_offset 30, -4
+  91 002c FF93      		push r31
+  92               		.cfi_def_cfa_offset 6
+  93               		.cfi_offset 31, -5
+  94               	/* prologue: Signal */
+  95               	/* frame size = 0 */
+  96               	/* stack size = 4...8 */
+  97               	.L__stack_usage = 4 + __gcc_isr.n_pushed
+  50:mypov.c       ****   if (j >= imagesize) 
+  98               		.loc 1 50 3 view .LVU21
+  99               		.loc 1 50 9 is_stmt 0 view .LVU22
+ 100 002e 2091 0000 		lds r18,j
+ 101               		.loc 1 50 6 view .LVU23
+ 102 0032 8091 0000 		lds r24,imagesize
+ 103 0036 9091 0000 		lds r25,imagesize+1
+ 104 003a 2817      		cp r18,r24
+ 105 003c 1906      		cpc __zero_reg__,r25
+ 106 003e 04F0      		brlt .L5
+  51:mypov.c       ****     j = 0;
+ 107               		.loc 1 51 5 is_stmt 1 view .LVU24
+ 108               		.loc 1 51 7 is_stmt 0 view .LVU25
+ 109 0040 1092 0000 		sts j,__zero_reg__
+ 110               	.L5:
+  52:mypov.c       **** 
+  53:mypov.c       ****   PORTB = image[j];
+ 111               		.loc 1 53 3 is_stmt 1 view .LVU26
+ 112               		.loc 1 53 16 is_stmt 0 view .LVU27
+ 113 0044 E091 0000 		lds r30,j
+ 114 0048 F0E0      		ldi r31,0
+ 115 004a EE0F      		lsl r30
+ 116 004c FF1F      		rol r31
+ 117 004e E050      		subi r30,lo8(-(image))
+ 118 0050 F040      		sbci r31,hi8(-(image))
+ 119               		.loc 1 53 9 view .LVU28
+ 120 0052 8081      		ld r24,Z
+ 121 0054 88BB      		out 0x18,r24
+  54:mypov.c       ****  
+  55:mypov.c       ****   j++;
+ 122               		.loc 1 55 3 is_stmt 1 view .LVU29
+ 123               		.loc 1 55 4 is_stmt 0 view .LVU30
+ 124 0056 8091 0000 		lds r24,j
+ 125 005a 8F5F      		subi r24,lo8(-(1))
+ 126 005c 8093 0000 		sts j,r24
+ 127               	/* epilogue start */
+  56:mypov.c       **** }
+ 128               		.loc 1 56 1 view .LVU31
+ 129 0060 FF91      		pop r31
+ 130 0062 EF91      		pop r30
+ 131 0064 9F91      		pop r25
+ 132 0066 8F91      		pop r24
+ 133 0068 2F91 1F90 		__gcc_isr 2
+ 133      1FBE 1F90 
+ 134 0070 1895      		reti
+ 135               		__gcc_isr 0,r18
+ 136               		.cfi_endproc
+ 137               	.LFE11:
+ 139               		.section	.text.startup,"ax",@progbits
+ 140               	.global	main
+ 142               	main:
+ 143               	.LFB12:
+  57:mypov.c       **** 
+  58:mypov.c       **** int main(void) {
+ 144               		.loc 1 58 16 is_stmt 1 view -0
+ 145               		.cfi_startproc
+ 146               	/* prologue: function */
+ 147               	/* frame size = 0 */
+ 148               	/* stack size = 0 */
+ 149               	.L__stack_usage = 0
+  59:mypov.c       **** 
+  60:mypov.c       ****   DDRB = 0xFF;       // set all 8 pins on port B to outputs
+ 150               		.loc 1 60 3 view .LVU33
+ 151               		.loc 1 60 8 is_stmt 0 view .LVU34
+ 152 0000 8FEF      		ldi r24,lo8(-1)
+ 153 0002 87BB      		out 0x17,r24
+  61:mypov.c       **** 
+  62:mypov.c       ****   /*
+  63:mypov.c       ****     the frequency of the interrupt overflow is determined by the 
+  64:mypov.c       ****     prescaler and overflow value.
+  65:mypov.c       ****     freq = clock_frequency / ( 2 * prescaler * overflow_val)
+  66:mypov.c       ****     where prescaler can be 1, 8, 64, 256, or 1024
+  67:mypov.c       ****     clock_freq is 8MHz
+  68:mypov.c       ****     and overflow_val is 16bit
+  69:mypov.c       **** 
+  70:mypov.c       ****     the overflow value is placed in OCR1A, the prescale is set in TCCR1B
+  71:mypov.c       ****     so for example:
+  72:mypov.c       ****     A good POV frequency is around 400Hz
+  73:mypov.c       ****     desired freq = 400Hz
+  74:mypov.c       ****     clock freq = 8MHz
+  75:mypov.c       ****     8MHz / (400Hz * 2) = 10000
+  76:mypov.c       ****     since 10000 is less than 655536 (largest 16 bit number)
+  77:mypov.c       ****     OCR1A = 10000 and the prescale is 1
+  78:mypov.c       ****   */
+  79:mypov.c       **** 
+  80:mypov.c       ****   TCCR1B = (1 << WGM12) | TIMER1_PRESCALE_1;
+ 154               		.loc 1 80 3 is_stmt 1 view .LVU35
+ 155               		.loc 1 80 10 is_stmt 0 view .LVU36
+ 156 0004 89E0      		ldi r24,lo8(9)
+ 157 0006 8EBD      		out 0x2e,r24
+  81:mypov.c       ****   OCR1A = (uint16_t)10000;
+ 158               		.loc 1 81 3 is_stmt 1 view .LVU37
+ 159               		.loc 1 81 9 is_stmt 0 view .LVU38
+ 160 0008 80E1      		ldi r24,lo8(16)
+ 161 000a 97E2      		ldi r25,lo8(39)
+ 162 000c 9BBD      		out 0x2a+1,r25
+ 163 000e 8ABD      		out 0x2a,r24
+  82:mypov.c       **** 
+  83:mypov.c       ****   TIMSK |= 1 << OCIE1A;   // Output Compare Interrupt Enable (timer 1, OCR1A) 
+ 164               		.loc 1 83 3 is_stmt 1 view .LVU39
+ 165               		.loc 1 83 9 is_stmt 0 view .LVU40
+ 166 0010 89B7      		in r24,0x39
+ 167 0012 8064      		ori r24,lo8(64)
+ 168 0014 89BF      		out 0x39,r24
+  84:mypov.c       **** 
+  85:mypov.c       ****   sei();                 // Set Enable Interrupts
+ 169               		.loc 1 85 3 is_stmt 1 view .LVU41
+ 170               	/* #APP */
+ 171               	 ;  85 "mypov.c" 1
+ 172 0016 7894      		sei
+ 173               	 ;  0 "" 2
+ 174               	/* #NOAPP */
+ 175               	.L7:
+  86:mypov.c       **** 
+  87:mypov.c       ****   while (1);
+ 176               		.loc 1 87 3 discriminator 1 view .LVU42
+ 177               		.loc 1 87 12 discriminator 1 view .LVU43
+ 178               		.loc 1 87 9 discriminator 1 view .LVU44
+ 179 0018 00C0      		rjmp .L7
+ 180               		.cfi_endproc
+ 181               	.LFE12:
+ 183               	.global	j
+ 184               		.section .bss
+ 187               	j:
+ 188 0000 00        		.zero	1
+ 189               	.global	imagesize
+ 190               		.data
+ 193               	imagesize:
+ 194 0000 0900      		.word	9
+ 195               		.section	.rodata
+ 198               	image:
+ 199 0000 0000 0000 		.zero	18
+ 199      0000 0000 
+ 199      0000 0000 
+ 199      0000 0000 
+ 199      0000 
+ 200               		.text
+ 201               	.Letext0:
+ 202               		.file 4 "/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include/stdint.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 mypov.c
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:2      *ABS*:0000003d __SP_L__
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:3      *ABS*:0000003f __SREG__
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:4      *ABS*:00000000 __tmp_reg__
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:5      *ABS*:00000001 __zero_reg__
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:11     .text:00000000 delay_ms
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:15     .text:00000000 .Loc.0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:16     .text:00000000 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:21     .text:00000000 .Loc.1
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:23     .text:00000002 .Loc.2
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:26     .text:00000002 .Loc.3
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:27     .text:00000002 .Loc.4
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:32     .text:00000008 .Loc.5
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:35     .text:0000000a .Loc.6
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:40     .text:0000000a .Loc.7
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:42     .text:0000000a .Loc.8
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:43     .text:0000000a .Loc.9
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:44     .text:0000000a .Loc.10
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:45     .text:0000000a .Loc.11
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:46     .text:0000000a .Loc.12
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:47     .text:0000000a .Loc.13
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:51     .text:0000000a .Loc.14
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:54     .text:0000000a .Loc.15
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:59     .text:00000014 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:62     .text:00000016 .Loc.16
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:65     .text:00000016 .Loc.17
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:66     .text:00000016 .Loc.18
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:70     .text:0000001a .Loc.19
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:72     .text:0000001c L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:77     .text:0000001c __vector_4
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:79     .text:0000001c .Loc.20
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:80     .text:0000001c L0
+                            *ABS*:00000003 __gcc_isr.n_pushed.001
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:98     .text:0000002e .Loc.21
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:99     .text:0000002e .Loc.22
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:187    .bss:00000000 j
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:101    .text:00000032 .Loc.23
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:193    .data:00000000 imagesize
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:107    .text:00000040 .Loc.24
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:108    .text:00000040 .Loc.25
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:111    .text:00000044 .Loc.26
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:112    .text:00000044 .Loc.27
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:198    .rodata:00000000 image
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:119    .text:00000052 .Loc.28
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:122    .text:00000056 .Loc.29
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:123    .text:00000056 .Loc.30
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:128    .text:00000060 .Loc.31
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:136    .text:00000072 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:142    .text.startup:00000000 main
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:144    .text.startup:00000000 .Loc.32
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:145    .text.startup:00000000 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:150    .text.startup:00000000 .Loc.33
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:151    .text.startup:00000000 .Loc.34
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:154    .text.startup:00000004 .Loc.35
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:155    .text.startup:00000004 .Loc.36
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:158    .text.startup:00000008 .Loc.37
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:159    .text.startup:00000008 .Loc.38
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:164    .text.startup:00000010 .Loc.39
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:165    .text.startup:00000010 .Loc.40
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:169    .text.startup:00000016 .Loc.41
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:176    .text.startup:00000018 .Loc.42
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:177    .text.startup:00000018 .Loc.43
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:178    .text.startup:00000018 .Loc.44
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:180    .text.startup:0000001a L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:203    .text:00000072 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:184    .text.startup:0000001a L0
+                     .debug_frame:00000000 L0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:34     .text:0000000a .L3
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:57     .text:0000000e .L11
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:25     .text:00000002 .L2
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:110    .text:00000044 .L5
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:175    .text.startup:00000018 .L7
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:421    .debug_abbrev:00000000 .Ldebug_abbrev0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:893    .debug_ranges:00000000 .Ldebug_ranges0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:907    .debug_line:00000000 .Ldebug_line0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:143    .text.startup:00000000 .LFB12
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:181    .text.startup:0000001a .LFE12
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:78     .text:0000001c .LFB11
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:137    .text:00000072 .LFE11
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:13     .text:00000000 .LFB10
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:73     .text:0000001c .LFE10
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:821    .debug_loc:00000004 .LLST0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:816    .debug_loc:00000000 .LVUS0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:38     .text:0000000a .LBI8
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:845    .debug_loc:0000002e .LLST1
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:842    .debug_loc:0000002c .LVUS1
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:857    .debug_loc:00000048 .LLST2
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:854    .debug_loc:00000046 .LVUS2
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:869    .debug_loc:00000062 .LLST3
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:866    .debug_loc:00000060 .LVUS3
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:12     .text:00000000 .LVL0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:24     .text:00000002 .LVL1
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:36     .text:0000000a .LVL2
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:61     .text:00000016 .LVL3
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:204    .debug_info:00000000 .Ldebug_info0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:7      .text:00000000 .Ltext0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:201    .text:00000072 .Letext0
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:37     .text:0000000a .LBB8
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:49     .text:0000000a .LBE8
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:52     .text:0000000a .LBB11
+/var/folders/qb/8xmhc4r90gn_p0jllfsz7ccr0000gn/T//ccoMhwIh.s:64     .text:00000016 .LBE11
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

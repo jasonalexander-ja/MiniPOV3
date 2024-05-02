@@ -52,12 +52,12 @@ You can use the attached `MiniPOV3 Generator.xlsx` spreadsheet that uses custom 
 
 ### Building 
 
-Open this repository in a command line, with make and WinAVR installed, run `make mypov.hex`, this will compile your code to the file `mypov.hex`.
+Open this repository in a command line, with make and the AVR toolchain installed, run `make mypov.hex`, this will compile your code to the file `mypov.hex`.
 
 
 ### Create your uploader 
 
-Connect your AVR based Arduino to your PC, opening the Arduino IDE, select it the correct port and Arduino boardn then open the examplke sketch `File -> Examples -> 11.ArduinoISP -> ArduinoISP` and upload it. 
+Connect your AVR based Arduino to your PC, opening the Arduino IDE, select the correct port and Arduino board then open the example sketch `File -> Examples -> 11.ArduinoISP -> ArduinoISP` and upload it. 
 
 <img src="docs/ide.png">
 
@@ -98,6 +98,11 @@ programmer # arduino_as_isp
 ;
 ```
 
+`avrdude.conf` is normally present in: 
+- Windows; same directory (folder) as the executable (run `where avrdude` from the command line to find the file)
+- MacOS (via brew); `/opt/homebrew/etc/avrdude.conf` 
+- Linux; `/usr/local/etc/avrdude.conf`
+
 In your command line, still in this repository's directory, run the following command:
 
 ```
@@ -106,4 +111,4 @@ avrdude -c arduino_as_isp -p t2313 -P [serial port] -U flash:w:"mypov.hex":a
 
 Add your serial port that the Arduino is connected to. You can replace `"mypov.hex"` with whichever hex file you want to upload. 
 
-You can now put take the ATtiny2313 and put it in your MiniPOV3 and use. 
+You can now take the ATtiny2313 and put it in your MiniPOV3 and display your custom message!  
