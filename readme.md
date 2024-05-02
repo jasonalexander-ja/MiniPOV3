@@ -43,7 +43,7 @@ const static int image[] = {
 };
 ```
 
-You can use [this Google sheet](https://docs.google.com/spreadsheets/d/1JXRmkcQ_jvdEf_VAuOMeiStR5ttnNMs8VD99YELfGRA/edit#gid=0) that uses custom formatting and formulas that will let you play with setting and unsetting pixels and will give you a list of all the binary numbers down the side which you can copy and paste in. 
+You can use the attached `MiniPOV3 Generator.xlsx` spreadsheet that uses custom formatting and formulas that will let you play with setting and unsetting pixels and will give you a list of all the binary numbers down the side which you can copy and paste in. 
 
 <img src="docs/googlesheet.png">
 
