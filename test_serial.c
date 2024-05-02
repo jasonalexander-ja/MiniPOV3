@@ -1,19 +1,18 @@
 #include <avr/io.h>      // this contains all the IO port definitions
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #define DTR PB7
 #define CTS PB6
 
 // This function basically wastes time
-void delay_ms(long int ms) {
-  unsigned long int timer;
-
-  while (ms != 0) {
-    // this number is dependant on the clock frequency
-    for (timer=0; timer <= 4200; timer++);
-    ms--;
-  }
-}
+void delay_ms( uint16_t milliseconds)
+{
+   for( ; milliseconds > 0; milliseconds--)
+   {
+      _delay_ms( 1);
+   }
+} 
 
 char uart_getchar(void) {
   while (! (UCSRA & _BV(RXC)) );

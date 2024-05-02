@@ -1,16 +1,15 @@
 #include <avr/io.h>      // this contains all the IO port definitions
+#include <util/delay.h>
 
 
 // This function basically wastes time
-void delay_ms(long int ms) {
-  unsigned long int timer;
-
-  while (ms != 0) {
-    // this number is dependant on the clock frequency
-    for (timer=0; timer <= 4200; timer++);
-    ms--;
-  }
-}
+void delay_ms( uint16_t milliseconds)
+{
+   for( ; milliseconds > 0; milliseconds--)
+   {
+      _delay_ms( 1);
+   }
+} 
 
 int main(void) {
 

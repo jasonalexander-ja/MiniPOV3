@@ -9,13 +9,13 @@ Apart from your MiniPOV3 (with the ATtiny2313) your will also need an AVR based 
 ### Software 
 - [make](https://gnuwin32.sourceforge.net/packages/make.htm) to build the software 
 - The AVR toolchain:
-  - On Windows, [WinAVR](https://winavr.sourceforge.net/) is useful. 
+  - On Windows, [WinAVR](https://winavr.sourceforge.net/) is useful 
   - On deb-like Linux:
     - `sudo apt-get update`
     - `apt-get sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude`
   - On MacOS:
     - `brew tap osx-cross/avr`
-    - `brew install avr-gcc binutils-avr avr-libc gdb-avr avrdude`
+    - `brew install avr-binutils avr-gcc avrdude`
 - [Arduino IDE](https://www.arduino.cc/en/software) to flash your Arduino board with the ArduinoISP firmware 
 
 
@@ -76,7 +76,7 @@ For the Arduino Uno, connect:
 
 ### Upload
 
-Edit your `avrdude.conf` file, check to see if `arduino_as_isp` is present, if not add, add the following programmer configuration:
+Edit your `avrdude.conf` file, check to see if `arduino_as_isp` is present, if not, add the following programmer configuration:
 
 ```conf
 #------------------------------------------------------------
