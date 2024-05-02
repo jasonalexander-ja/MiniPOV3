@@ -77,3 +77,5 @@ Open AVRDUDESS, under `Programmer` select `Arduino board as programmer using ard
 
 <img src="docs/avrdudess.png">
 
+
+You can now put take the ATTint2313 and put it in your MiniPOV3 and use. 
