@@ -4,10 +4,18 @@ This is a short tutorial on how to program your MiniPOV3 in 2024.
 
 ### Hardware 
 
-Apart from your MiniPOV3 (with the ATTiny2313) your will also need an AVR based Arduino board to upload it code to it, this example uses an Arduino Uno. 
+Apart from your MiniPOV3 (with the ATtiny2313) your will also need an AVR based Arduino board to upload it code to it, this example uses an Arduino Uno. 
 
 ### Software 
-- [avrdude](https://github.com/avrdudes/avrdude) & [make](https://gnuwin32.sourceforge.net/packages/make.htm) to build the software 
+- [make](https://gnuwin32.sourceforge.net/packages/make.htm) to build the software 
+- The AVR toolchain:
+  - On Windows, [WinAVR](https://winavr.sourceforge.net/) is useful. 
+  - On deb-like Linux:
+    - `sudo apt-get update`
+    - `apt-get sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude`
+  - On MacOS:
+    - `brew tap osx-cross/avr`
+    - `brew install avr-gcc binutils-avr avr-libc gdb-avr avrdude`
 - [Arduino IDE](https://www.arduino.cc/en/software) to flash your Arduino board with the ArduinoISP firmware 
 
 
@@ -44,8 +52,6 @@ You can use the attached `MiniPOV3 Generator.xlsx` spreadsheet that uses custom 
 
 ### Building 
 
-So far, this setp only works on Windows, for Mac/Linux, you will have to upload an existing hex file. 
-
 Open this repository in a command line, with make and WinAVR installed, run `make mypov.hex`, this will compile your code to the file `mypov.hex`.
 
 
@@ -57,14 +63,14 @@ Connect your AVR based Arduino to your PC, opening the Arduino IDE, select it th
 
 #### Circuit 
 
-Next, with your ATTiny2313 on a breadboard, connect pin 10 to Arduino ground, and pin 20 to arduino +5 volts. 
+Next, with your ATtiny2313 on a breadboard, connect pin 10 to Arduino ground, and pin 20 to arduino +5 volts. 
 
 For the Arduino Uno, connect: 
 
-- Arduino pin 13 -> ATTiny2313 pin 19
-- Arduino pin 12 -> ATTiny2313 pin 18
-- Arduino pin 11 -> ATTiny2313 pin 17
-- Arduino pin 10 -> ATTiny2313 pin 1
+- Arduino pin 13 -> ATtiny2313 pin 19
+- Arduino pin 12 -> ATtiny2313 pin 18
+- Arduino pin 11 -> ATtiny2313 pin 17
+- Arduino pin 10 -> ATtiny2313 pin 1
 
 <img src="docs/circuit.png">
 
@@ -100,4 +106,4 @@ avrdude -c arduino_as_isp -p t2313 -P [serial port] -U flash:w:"mypov.hex":a
 
 Add your serial port that the Arduino is connected to. You can replace `"mypov.hex"` with whichever hex file you want to upload. 
 
-You can now put take the ATTint2313 and put it in your MiniPOV3 and use. 
+You can now put take the ATtiny2313 and put it in your MiniPOV3 and use. 
